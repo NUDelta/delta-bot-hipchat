@@ -13,3 +13,4 @@ class RandomPlugin(WillPlugin):
     	else:
     		self.reply(message, "Your roll: " + str(randint(int(num2), int(num1))))
     
+    
