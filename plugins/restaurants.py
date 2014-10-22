@@ -44,6 +44,7 @@ class RestaurantPlugin(WillPlugin):
 
 		if restaurant in rlist:
 			rlist.remove(restaurant)
+			self.save("restaurants", [])
 			self.reply(message, "Successfully removed '" + restaurant + "' from our list.")
 		else:
 			self.reply(message, "Couldn't find '" + restaurant + "'. Are you sure you capitalized and spelled it correctly?")
@@ -70,7 +71,6 @@ class RestaurantPlugin(WillPlugin):
 		sleep(10)
 
 		sorted_votes = sorted(self.votes.items(), key=itemgetter(1), reverse=True)
-
 		self.say("The results!:\n\n" + "\n".join("%s: %s" % (key, value) for key, value in sorted_votes), message=self.message)
 		self.voting = False
 		self.votes = {}
