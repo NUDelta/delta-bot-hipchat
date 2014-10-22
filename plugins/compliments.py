@@ -13,7 +13,7 @@ class ComplimentPlugin(WillPlugin):
         self.reply(message, comp)
 
     @respond_to("trashtalk me")
-    def compliment(self, message):
+    def trashtalk(self, message):
         """trashtalk me: I can insult you!"""
 
         trashtalk = insults[randint(0, len(insults)-1)]
@@ -255,8 +255,6 @@ compliments = ["You have very smooth hair.",
 "I would hold the elevator doors open for you if they were closing.",
 "Your every thought and motion contributes to the beauty of the universe.",
 "You make me want to frolic in a field. "]
-
-
 
 insults = [
     "You look like you're going to spend your life having one epiphany after another, always thinking you've finally figured out what's holding you back, and how you can finally be productive and creative and turn you life around. But nothing will ever change. That cycle of mediocrity isn't due to some obstacle. It's who you are. The thing standing in the way of your dreams is that the person having them is you.",

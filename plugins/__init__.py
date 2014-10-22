@@ -1,1 +1,1 @@
-MODULE_DESCRIPTION = "Kevin's set of plugins"
+MODULE_DESCRIPTION = "Kevin's awesome plugins"
