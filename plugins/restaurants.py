@@ -11,7 +11,6 @@ class RestaurantPlugin(WillPlugin):
 		self.votes = {}
 		self.message = None
 
-
 	@respond_to("restaurant add (?P<restaurant>.*)")
 	def add_restaurant(self, message, restaurant):
 		"""restaurant add ___: I can add a restaurant to our list!"""
@@ -20,7 +19,7 @@ class RestaurantPlugin(WillPlugin):
 			rlist.append(restaurant)
 
 		self.save("restaurants", rlist)
-		self.reply(message, "Got it. '" + restaurant + " is in our list.")
+		self.reply(message, "Got it. '" + restaurant + "' is in our list.")
 
 	@respond_to("restaurant list")
 	def list_restaurants(self, message):
@@ -29,7 +28,7 @@ class RestaurantPlugin(WillPlugin):
 		if rlist == []:
 			self.reply(message, "The list is empty. Add some with 'restaurant add ____'!")
 		else:
-			self.reply(message, "The restaurants we have are: \n" + "\n".join(rlist))
+			self.reply(message, "The restaurants we have are: \n - " + "\n - ".join(rlist))
 
 	@respond_to("restaurant clear")
 	def clear_restaurants(self, message):
@@ -71,7 +70,7 @@ class RestaurantPlugin(WillPlugin):
 		sleep(10)
 
 		sorted_votes = sorted(self.votes.items(), key=itemgetter(1), reverse=True)
-		self.say("The results!:\n\n" + "\n".join("%s: %s" % (key, value) for key, value in sorted_votes), message=self.message)
+		self.say("The results!:\n\n - " + "\n - ".join("%s: %s" % (key, value) for key, value in sorted_votes), message=self.message)
 		self.voting = False
 		self.votes = {}
 
@@ -81,7 +80,8 @@ class RestaurantPlugin(WillPlugin):
 			return
 		else:
 			rlist = self.load("restaurants", [])
-			if restaurant in rlist:
+			rlist = [i.lower() for i in rlist]
+			if restaurant.lower() in rlist:
 				self.votes[restaurant] += 1
 
 

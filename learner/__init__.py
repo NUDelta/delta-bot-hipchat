@@ -1,0 +1,1 @@
+MODULE_DESCRIPTION = "kdbot attempts to learn!"
