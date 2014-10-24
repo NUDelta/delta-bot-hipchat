@@ -81,8 +81,11 @@ class RestaurantPlugin(WillPlugin):
 		else:
 			rlist = self.load("restaurants", [])
 			rlist2 = [i.lower() for i in rlist]
-			i = rlist2.index(restaurant.lower())
-			if i != -1:
+
+			try:
+				i = rlist2.index(restaurant.lower())
 				self.votes[rlist[i]] += 1
+			except Exception, e:
+				pass
 
 
