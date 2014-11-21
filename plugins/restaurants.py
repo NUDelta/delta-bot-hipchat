@@ -11,7 +11,7 @@ class RestaurantPlugin(WillPlugin):
         self.votes = {}
         self.person_votes = {}
         self.message = None
-        self.onepp = False
+        self.onepp = True
 
     @respond_to("restaurant add (?P<restaurant>.*)")
     def add_restaurant(self, message, restaurant):
@@ -72,7 +72,9 @@ class RestaurantPlugin(WillPlugin):
         sleep(10)
 
         if self.onepp:
-            for key, value in self.person_votes:
+            rlist = self.load("restaurants", [])
+            rlist2 = [i.lower() for i in rlist]
+            for key, value in self.person_votes.iteritems():
                 self.votes[rlist[value]] += 1
 
             self.person_votes = {}
@@ -93,6 +95,8 @@ class RestaurantPlugin(WillPlugin):
                 try:
                     i = rlist2.index(restaurant.lower());
                     self.person_votes[message.sender.nick] = i
+                    print message.sender.nick
+                    print self.person_votes
                 except Exception, e:
                     pass
             else:
