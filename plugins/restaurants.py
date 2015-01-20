@@ -95,8 +95,6 @@ class RestaurantPlugin(WillPlugin):
                 try:
                     i = rlist2.index(restaurant.lower());
                     self.person_votes[message.sender.nick] = i
-                    print message.sender.nick
-                    print self.person_votes
                 except Exception, e:
                     pass
             else:
